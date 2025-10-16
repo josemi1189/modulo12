@@ -1,9 +1,9 @@
-import { Hotel } from "../controller/motor";
+import { Hotel, TourOperador } from "../controller/motor";
 import { reservas } from "../model/model";
 
 
-const muestraDatos = (clase:string, valor:string):void => {
-   const divDatos = document.getElementById("datos");
+const muestraDatos = (contenedor:string, clase:string, valor:string):void => {
+   const divDatos = document.getElementById(contenedor);
    if (divDatos && divDatos instanceof HTMLDivElement) {
       const contenedor = document.createElement("span");
       contenedor.classList.add(clase);
@@ -12,17 +12,28 @@ const muestraDatos = (clase:string, valor:string):void => {
    }
 }
 
-const getDatos = ():void => {
+const getDatosCaso1 = ():void => {
    const gestionReservas = new Hotel(reservas);
    let subtotal = gestionReservas.calculaSubtotal();
-   muestraDatos("subtotal",subtotal.toString());
+   muestraDatos("caso1", "subtotal",subtotal.toString());
    let total = gestionReservas.calculaTotal(subtotal);
-   muestraDatos("total",total.toString());
-   
-   console.log(`Subtotal: ${subtotal} \nTotal: ${total}`);
+   muestraDatos("caso1", "total",total.toString());
+
 }
+
+const getDatosCaso2 = ():void => {
+   const gestionReservas = new TourOperador(reservas, 100);
+   let subtotal = gestionReservas.calculaSubtotal();
+   muestraDatos("caso2", "subtotal",subtotal.toString());
+   let total = gestionReservas.calculaTotal(subtotal);
+   muestraDatos("caso2", "total",total.toString());
+
+}
+
+
 export const app = ():void => {
    
-   getDatos();
+   getDatosCaso1();
+   getDatosCaso2();
 
 }

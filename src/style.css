@@ -97,7 +97,7 @@ button:focus-visible {
 }
 
 
-#datos {
+.datos {
   text-align: left;
   display: flex;
   flex-direction: column;
