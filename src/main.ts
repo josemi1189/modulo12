@@ -1,3 +1,7 @@
 import "./style.css";
+import { app } from "./ui/ui";
 
-console.log("Hello Typescript!");
+document.addEventListener("DOMContentLoaded", app );
+
+
+
