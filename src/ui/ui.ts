@@ -1,5 +1,5 @@
-import { Hotel, TourOperador } from "../controller/motor";
-import { reservas } from "../model/model";
+import { Particular, TourOperador } from "../controller/motor";
+import { preciosParticular, preciosTour, reservas } from "../model/model";
 
 
 const muestraDatos = (contenedor:string, clase:string, valor:string):void => {
@@ -13,19 +13,19 @@ const muestraDatos = (contenedor:string, clase:string, valor:string):void => {
 }
 
 const getDatosCaso1 = ():void => {
-   const gestionReservas = new Hotel(reservas);
-   let subtotal = gestionReservas.calculaSubtotal();
+   const particular = new Particular(reservas, preciosParticular);
+   let subtotal = particular.calculaSubtotal();
    muestraDatos("caso1", "subtotal",subtotal.toString());
-   let total = gestionReservas.calculaTotal(subtotal);
+   let total = particular.calculaTotal(subtotal);
    muestraDatos("caso1", "total",total.toString());
 
 }
 
 const getDatosCaso2 = ():void => {
-   const gestionReservas = new TourOperador(reservas, 100);
-   let subtotal = gestionReservas.calculaSubtotal();
+   const tourOperador = new TourOperador(reservas, preciosTour);
+   let subtotal = tourOperador.calculaSubtotal();
    muestraDatos("caso2", "subtotal",subtotal.toString());
-   let total = gestionReservas.calculaTotal(subtotal);
+   let total = tourOperador.calculaTotal(subtotal);
    muestraDatos("caso2", "total",total.toString());
 
 }
